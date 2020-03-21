@@ -3,5 +3,7 @@ import interfaces.ICommand;
 
 public class OpenDataServerCommand implements ICommand {
     @Override
-    public void doCommand() { }
+    public void doCommand(String[] args) {
+
+    }
 }

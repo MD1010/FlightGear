@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface ICommand {
-    void doCommand();
+    void doCommand(String[] args) throws Exception;
 }

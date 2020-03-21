@@ -1,15 +1,20 @@
 package mappers;
-
 import commands.*;
 import interfaces.ICommand;
-import interfaces.IMapper;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandsMapper implements IMapper {
+public class CommandMapper {
     Map<String, ICommand> commandsMap = new HashMap<>();
 
-    @Override
+    public CommandMapper() {
+        this.init();
+    }
+
+    public Map<String, ICommand> getCommandsMap() {
+        return commandsMap;
+    }
+
     public void init() {
         commandsMap.put("openDataServer", new OpenDataServerCommand());
         commandsMap.put("connect", new ConnectCommand());
