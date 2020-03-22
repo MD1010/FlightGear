@@ -10,7 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
-import utils.XmlNode;
+import models.XmlNode;
 
 public class FileReader {
     public static List<String> readFile(String fileName) {
@@ -20,12 +20,10 @@ public class FileReader {
             Scanner fileReader = new Scanner(fileDescriptor);
             while (fileReader.hasNextLine()) {
                 String data = fileReader.nextLine();
-                System.out.println(data);
                 fileData.add(data);
             }
             fileReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
         return fileData;
@@ -46,13 +44,9 @@ public class FileReader {
 
                 Node nNode = nList.item(temp);
 
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
-
-                    System.out.println("First Name : " + eElement.getElementsByTagName("name").item(0).getTextContent());
                     String name =  eElement.getElementsByTagName("name").item(0).getTextContent();
                     String format = eElement.getElementsByTagName("format").item(0).getTextContent();
                     String type = eElement.getElementsByTagName("type").item(0).getTextContent();

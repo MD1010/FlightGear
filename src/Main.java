@@ -1,5 +1,6 @@
 import interfaces.ICommand;
 import mappers.CommandMapper;
+import mappers.VariableMapper;
 import readers.CommandReader;
 import readers.FileReader;
 
@@ -13,6 +14,7 @@ public class Main {
         List<String> file = FileReader.readFile("program.txt");
         for (String line:file) {
             String[] programSplitedCommand = CommandReader.readCommand(line);
+            System.out.println(line);
             if(commandsMap.containsKey(programSplitedCommand[0])) {
                 String[] commandArgs = Arrays.copyOfRange(programSplitedCommand, 1, programSplitedCommand.length);
                 commandsMap.get(programSplitedCommand[0]).doCommand(commandArgs);
@@ -21,5 +23,6 @@ public class Main {
                 // change variables
             }
         }
+        VariableMapper.printSymbolMap();
     }
 }
