@@ -13,7 +13,7 @@ import org.w3c.dom.Element;
 import models.XmlNode;
 
 public class FileReader {
-    public static List<String> readFile(String fileName) {
+    public static String[] readFile(String fileName) {
         List<String> fileData = new ArrayList<String>();
         try {
             File fileDescriptor = new File(fileName);
@@ -26,7 +26,7 @@ public class FileReader {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return fileData;
+        return fileData.toArray(new String[0]);
     }
 
     public static List<XmlNode> readXMLFile(String fileName) {
