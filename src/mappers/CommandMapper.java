@@ -1,6 +1,8 @@
 package mappers;
 import commands.*;
 import interfaces.ICommand;
+import utils.Consts;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,5 +23,6 @@ public class CommandMapper {
         commandsMap.put("var", new VarCommand());
         commandsMap.put("print", new PrintCommand());
         commandsMap.put("sleep", new SleepCommand());
+        commandsMap.put(Consts.EQUAL_SIGN, new EqualCommand());
     }
 }
