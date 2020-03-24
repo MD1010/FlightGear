@@ -21,6 +21,10 @@ public class VariableMapper {
         return symbolMap.containsKey(variableName);
     }
 
+    public static Variable getVaraibleByKey(String variableName) {
+        return symbolMap.get(variableName);
+    }
+
     public static void printSymbolMap() {
         for (Map.Entry<String, Variable> entry : symbolMap.entrySet()) {
             String key = entry.getKey();

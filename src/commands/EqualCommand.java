@@ -1,6 +1,8 @@
 package commands;
 
 import interfaces.ICommand;
+import utils.ExpressionEvaluator;
+import utils.HelperFuncs;
 
 import java.util.Arrays;
 
@@ -10,7 +12,8 @@ public class EqualCommand implements ICommand {
         // noder = 0
         // number = 90 * 7
         // number = h0 * 3 + noder
-        // args -> v = 1
+        HelperFuncs.throwIfEqualSignDoesntExist(args[1]);
+        ExpressionEvaluator.switchVariablesToValues(args);
         String lValue = args[0];
         String[] rValue = Arrays.copyOfRange(args, 1, args.length);
 //        getExpressionValue(rValue);

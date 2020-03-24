@@ -23,7 +23,7 @@ public class VarCommand implements ICommand {
             HelperFuncs.throwIfNumOfArgumentsIsInvalid(args.length != 4, args, 4);
             String variablePath = args[3].replaceAll("\"", "");
             variable.isLocal = false;
-            variable.value = variablePath;
+            variable.path = variablePath;
         }
         else if (VariableMapper.isVariableExist(rValue)) {
             variable.isLocal = true;
