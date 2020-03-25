@@ -38,7 +38,7 @@ public class ShuntingYard {
 
                 // digit
             } else {
-                output.append(token);
+                output.append(token).append(' ');
             }
         }
 
@@ -47,6 +47,6 @@ public class ShuntingYard {
 
         // outpout = "9 8 + 3 5 /"
         // ["9 8 + 3 5 /"]
-        return new String[]{ output.toString() };
+        return output.toString().split("\\s+");
     }
 }
