@@ -43,6 +43,8 @@ public class ExpressionEvaluator {
         IExpression operand1, operand2;
         Stack<IExpression> stack = new Stack<>();
 
+        stack.push(new Number(0));
+
         for (String s : expression) {
             if (operatorsMap.containsKey(s)) {
                 operand2 = stack.pop();

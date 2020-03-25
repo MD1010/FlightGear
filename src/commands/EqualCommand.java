@@ -15,6 +15,12 @@ public class EqualCommand implements ICommand {
         // noder = 0
         // number = 90 * 7
         // number = h0 * 3 + noder
+
+
+
+        // noder - n
+        // 100 - num
+        // - number - 10
         HelperFuncs.throwIfEqualSignDoesntExist(args[1]);
         String[] expressionAfterEqualSign = ExpressionEvaluator.switchVariablesToValues(args);
         String[] rValuePostfix = ShuntingYard.convertToPostfix(expressionAfterEqualSign);
