@@ -9,7 +9,7 @@ import utils.HelperFuncs;
 
 public class VarCommand implements ICommand {
     @Override
-    public void doCommand(String[] args) throws Exception {
+    public int doCommand(String[] args) throws Exception {
         HelperFuncs.throwIfNumOfArgumentsIsInvalid(args.length < 3, args, 3);
 
         String variableName = args[0];
@@ -33,5 +33,6 @@ public class VarCommand implements ICommand {
         }
 
         VariableMapper.setVariable(variableName, variable);
+        return 1;
     }
 }

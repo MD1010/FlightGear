@@ -12,4 +12,12 @@ public class HelperFuncs {
             throw new Exception("Syntax Error, Excpected = after variable name ");
         }
     }
+    public static int countLinesUntillClosingBrancket(String[] text){
+        int lineCounter = 0;
+        for(String line: text){
+            if(line.equals("}")) break;
+            lineCounter++;
+        }
+        return lineCounter;
+    }
 }

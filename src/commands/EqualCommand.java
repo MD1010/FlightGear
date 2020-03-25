@@ -11,7 +11,7 @@ import static utils.ExpressionEvaluator.getExpressionNumericValue;
 
 public class EqualCommand implements ICommand {
     @Override
-    public void doCommand(String[] args) throws Exception {
+    public int doCommand(String[] args) throws Exception {
         // noder = 0
         // number = 90 * 7
         // number = h0 * 3 + noder
@@ -25,6 +25,7 @@ public class EqualCommand implements ICommand {
         String[] expressionAfterEqualSign = ExpressionEvaluator.switchVariablesToValues(args);
         String[] rValuePostfix = ShuntingYard.convertToPostfix(expressionAfterEqualSign);
         double k = getExpressionNumericValue(rValuePostfix);
+        return 1;
         // args = [noder, = , h0, -, heading, /, 15]
         // retutrn: [4, -, 3, /, 20]
     }

@@ -3,7 +3,7 @@ import interfaces.ICommand;
 
 public class PrintCommand implements ICommand {
     @Override
-    public void doCommand(String[] args) {
-
+    public int doCommand(String[] args) {
+        return 1;
     }
 }
