@@ -1,5 +1,10 @@
 package utils;
 
+import mappers.VariableMapper;
+import models.Variable;
+
+import java.util.Random;
+
 public class HelperFuncs {
     public static void throwIfNumOfArgumentsIsInvalid(boolean predicate, String[] args, int expectedNumOfArgs) throws Exception {
         if (predicate) {
@@ -19,5 +24,19 @@ public class HelperFuncs {
             lineCounter++;
         }
         return lineCounter;
+    }
+
+    public static double getValueOrVariableValue(String variableOrValue) {
+        Variable variable = VariableMapper.getVaraibleByKey(variableOrValue);
+        if(variable != null) {
+            // todo: delete random
+            if(variable.value == null) {
+                Random random = new Random();
+                return random.nextDouble();
+            }
+            return Double.parseDouble(variable.value);
+        } else {
+            return Double.parseDouble(variableOrValue);
+        }
     }
 }
