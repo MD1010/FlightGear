@@ -1,6 +1,8 @@
 package commands;
 
 import interfaces.ICommand;
+import mappers.VariableMapper;
+import models.Variable;
 import utils.ExpressionEvaluator;
 import utils.HelperFuncs;
 import utils.ShuntingYard;
@@ -24,7 +26,10 @@ public class EqualCommand implements ICommand {
         HelperFuncs.throwIfEqualSignDoesntExist(args[1]);
         String[] expressionAfterEqualSign = ExpressionEvaluator.switchVariablesToValues(args);
         String[] rValuePostfix = ShuntingYard.convertToPostfix(expressionAfterEqualSign);
-        double k = getExpressionNumericValue(rValuePostfix);
+        double variableValue = getExpressionNumericValue(rValuePostfix);
+        Variable newVar = new Variable();
+        newVar.value = String.valueOf(variableValue);
+        VariableMapper.setVariable(args[0],newVar);
         return 1;
         // args = [noder, = , h0, -, heading, /, 15]
         // retutrn: [4, -, 3, /, 20]
