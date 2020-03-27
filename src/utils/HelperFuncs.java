@@ -72,7 +72,7 @@ public class HelperFuncs {
                 int linesToRead = HelperFuncs.countLinesUntillClosingBrancket(commandsUntillEndOfFile);
                 String[] commandsOfWhileLoop = Arrays.copyOfRange(ReadCommandFile.fileData, lineIndex, lineIndex + linesToRead);
                 CommandMapper.loopsCommandsMap.get(firstCommandWord).doCommand(commandsOfWhileLoop,lineIndex+1);
-                lineIndex += linesToRead + 1;
+                lineIndex += linesToRead;
 
             }
         }
