@@ -2,17 +2,15 @@ package commands;
 
 import interfaces.ICommand;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ConnectCommand implements ICommand {
     private static ConnectCommand connectCommandInstance;
-    private Socket socket;
-    private PrintWriter out;
+    private static Socket socket;
+    private static PrintWriter out;
 
     private ConnectCommand() {
     }
@@ -26,8 +24,8 @@ public class ConnectCommand implements ICommand {
     @Override
     public int doCommand(String[] args) {
         try {
-            this.setSocket(new Socket(args[0], Integer.parseInt(args[1])));
-            this.setOut(new PrintWriter(this.getSocket().getOutputStream(), true));
+            socket = new Socket(args[0], Integer.parseInt(args[1]));
+            out = new PrintWriter(socket.getOutputStream(), true);
         } catch (UnknownHostException e) {
             System.out.println(e);
         } catch (IOException e) {
@@ -38,25 +36,8 @@ public class ConnectCommand implements ICommand {
 
     // establish a connection
 
-    public void sendCommandToSimulator(String command) throws IOException {
-        this.getOut().println(command.replace("\"", ""));
-    }
-
-
-    public Socket getSocket() {
-        return this.socket;
-    }
-
-    public void setSocket(Socket socket) {
-        this.socket = socket;
-    }
-
-    public PrintWriter getOut() {
-        return this.out;
-    }
-
-    public void setOut(PrintWriter out) {
-        this.out = out;
+    public static void sendCommandToSimulator(String command) throws IOException { //command: "set /controls/..../.././. 100"
+       out.println(command);
     }
 }
 

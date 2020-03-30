@@ -1,6 +1,7 @@
 package commands;
 
 import interfaces.ICommand;
+import mappers.CommandMapper;
 import mappers.VariableMapper;
 import models.Variable;
 import utils.ExpressionEvaluator;
@@ -27,9 +28,10 @@ public class EqualCommand implements ICommand {
         String[] expressionAfterEqualSign = ExpressionEvaluator.switchVariablesToValues(args);
         String[] rValuePostfix = ShuntingYard.convertToPostfix(expressionAfterEqualSign);
         double variableValue = getExpressionNumericValue(rValuePostfix);
-        Variable newVar = new Variable();
-        newVar.value = String.valueOf(variableValue);
-        VariableMapper.setVariable(args[0],newVar);
+        Variable updatedVariable = VariableMapper.getVaraibleByKey(args[0]);
+        updatedVariable.value = String.valueOf(variableValue);
+        ConnectCommand.sendCommandToSimulator("set " + updatedVariable.path + " " + updatedVariable.value);
+        VariableMapper.setVariable(args[0], updatedVariable);
         return 1;
         // args = [noder, = , h0, -, heading, /, 15]
         // retutrn: [4, -, 3, /, 20]

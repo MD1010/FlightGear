@@ -9,11 +9,11 @@ import java.net.Socket;
 
 public class DataServerReader {
     private String port;
-    private String sample_time;
+    private String sampleTime;
 
-    public DataServerReader(String port, String sample_time) {
+    public DataServerReader(String port, String sampleTime) {
         this.setPort(port);
-        this.setSampleTime(sample_time);
+        this.setSampleTime(sampleTime);
         try {
             this.openServerConnection();
         } catch (IOException e) {
@@ -34,8 +34,6 @@ public class DataServerReader {
             System.out.println(line);
             line = reader.readLine();
         }
-        //need to continue this function. jeniadov
-
     }
 
     private String getPort() {
@@ -49,11 +47,11 @@ public class DataServerReader {
 
 
     private String getSampleTime() {
-        return this.sample_time;
+        return this.sampleTime;
     }
 
     ;
-    private void setSampleTime(String sample_time) {
-        this.sample_time = sample_time;
+    private void setSampleTime(String sampleTime) {
+        this.sampleTime = sampleTime;
     }
 }
