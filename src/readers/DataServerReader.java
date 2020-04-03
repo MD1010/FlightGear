@@ -14,26 +14,40 @@ public class DataServerReader {
     public DataServerReader(String port, String sampleTime) {
         this.setPort(port);
         this.setSampleTime(sampleTime);
-        try {
-            this.openServerConnection();
-        } catch (IOException e) {
-            System.out.println("Failed to open server ! ");
-        }
+//        try {
+//            this.openServerConnection();
+//        } catch (IOException e) {
+//            System.out.println("Failed to open server ! ");
+//        }
     }
 
-    public static void openServerConnection() throws IOException {
-
-        ServerSocket serverSocket = new ServerSocket(5400);
-        System.out.println("here 1");
+    public static void openServerConnection(int port) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(port);
+        System.out.println("before accept");
         Socket socket = serverSocket.accept();
-        System.out.println("here 2");
+        System.out.println("conneceted..Now data supposed to be sent");
         InputStream input = socket.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-        String line = reader.readLine();
-        while (line != null) {
-            System.out.println(line);
-            line = reader.readLine();
-        }
+
+
+        Runnable r = new Runnable() {
+            public void run() {
+                int index = 0;
+                try {
+                    String line = reader.readLine();
+                    while (line != null) {
+                        if(index++ % 10 == 0) {
+                            System.out.println(line);
+                        }
+                        line = reader.readLine();
+                    }
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        new Thread(r).start();
     }
 
     private String getPort() {
