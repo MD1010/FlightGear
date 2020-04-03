@@ -36,6 +36,8 @@ public class DataServerReader {
                 try {
                     String line = reader.readLine();
                     while (line != null) {
+                        String[] lineData = line.split(",");
+                        updateExistingVariables()
                         if(index++ % 10 == 0) {
                             System.out.println(line);
                         }

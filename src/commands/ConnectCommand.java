@@ -23,21 +23,22 @@ public class ConnectCommand implements ICommand {
 
     @Override
     public int doCommand(String[] args) {
-       /* try {
+        try {
             socket = new Socket(args[0], Integer.parseInt(args[1]));
             out = new PrintWriter(socket.getOutputStream(), true);
         } catch (UnknownHostException e) {
             System.out.println(e);
         } catch (IOException e) {
             System.out.println(e);
-        }*/
+        }
         return 1;
     }
 
     // establish a connection
 
-    public static void sendCommandToSimulator(String command) throws IOException { //command: "set /controls/..../.././. 100"
-//       out.println(command);
+    public static void sendCommandToSimulator(String command) throws IOException {
+        //command: "set /controls/..../.././. 100"
+       out.println(command);
     }
 }
 

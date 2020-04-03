@@ -21,7 +21,6 @@ public class WhileCommand implements ILoopCommand {
         double firstConditionValue = HelperFuncs.getValueOrVariableValue(conditionLeftOperand);
         double secondConditionValue = HelperFuncs.getValueOrVariableValue(conditionRightOperand);
 
-        // todo: remove the commandInsideLoopIndex
         while (ConditionMapper.condationsMap.get(conditionSign).isConditionHappening(firstConditionValue, secondConditionValue)) {
             System.out.println("Sheni damog!!!!!!");
             for (String commandToExexute : commandsInsideLoop) {

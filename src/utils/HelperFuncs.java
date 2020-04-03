@@ -46,6 +46,15 @@ public class HelperFuncs {
         }
     }
 
+    public static String getVariableKeyByPath(String XMLPath){
+        for(String var: VariableMapper.symbolMap.keySet()){
+            if(VariableMapper.symbolMap.get(var).path.equals(XMLPath)){
+                return var;
+            }
+
+        }
+    }
+
     public static int executeCommand(String lineToExecute, int lineIndex) throws Exception {
         // check if first word is a command name
         String[] splittedCommand = CommandReader.splitAndRemoveSpaces(lineToExecute);

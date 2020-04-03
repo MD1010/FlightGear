@@ -13,6 +13,7 @@ import org.w3c.dom.Element;
 import models.XmlNode;
 
 public class FileReader {
+    public static List<XmlNode> xmlVariables = new ArrayList<XmlNode>();
     public static String[] readFile(String fileName) {
         List<String> fileData = new ArrayList<String>();
         try {
@@ -30,7 +31,6 @@ public class FileReader {
     }
 
     public static List<XmlNode> readXMLFile(String fileName) {
-        List<XmlNode> xmlVariables = new ArrayList<XmlNode>();
         try {
             File fXmlFile = new File(fileName);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
