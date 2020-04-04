@@ -1,5 +1,7 @@
 package readers;
 
+import utils.VariableAssign;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +39,7 @@ public class DataServerReader {
                     String line = reader.readLine();
                     while (line != null) {
                         String[] lineData = line.split(",");
-                        updateExistingVariables()
+                        VariableAssign.updateExistingVariables(lineData);
                         if(index++ % 10 == 0) {
                             System.out.println(line);
                         }

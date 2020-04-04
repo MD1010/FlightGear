@@ -1,13 +1,11 @@
 package utils;
 
-import interfaces.ICommand;
 import mappers.CommandMapper;
 import mappers.VariableMapper;
 import models.Variable;
 import readers.CommandReader;
 
 import java.util.Arrays;
-import java.util.Map;
 import java.util.Random;
 
 public class HelperFuncs {
@@ -36,23 +34,27 @@ public class HelperFuncs {
         Variable variable = VariableMapper.getVaraibleByKey(variableOrValue);
         if (variable != null) {
             // todo: delete random
-            if (variable.value == null) {
-                Random random = new Random();
-                return random.nextDouble();
-            }
+            //if (variable.value == null) {
+                //Random random = new Random();
+                //return random.nextDouble();
+            //}
             return Double.parseDouble(variable.value);
         } else {
             return Double.parseDouble(variableOrValue);
         }
     }
 
-    public static String getVariableKeyByPath(String XMLPath){
-        for(String var: VariableMapper.symbolMap.keySet()){
-            if(VariableMapper.symbolMap.get(var).path.equals(XMLPath)){
-                return var;
+    public static String getVariableKeyByPath(String XMLPath) {
+        for (String var : VariableMapper.symbolMap.keySet()) {
+            if (!VariableMapper.symbolMap.get(var).isLocal) {
+                if (VariableMapper.symbolMap.get(var).path.equals(XMLPath)) {
+                    return var;
+                }
             }
 
+
         }
+        return null;
     }
 
     public static int executeCommand(String lineToExecute, int lineIndex) throws Exception {
@@ -76,11 +78,11 @@ public class HelperFuncs {
             // while number < 100 {
             // }
 
-            if ( CommandMapper.loopsCommandsMap.containsKey(firstCommandWord)) {
+            if (CommandMapper.loopsCommandsMap.containsKey(firstCommandWord)) {
                 String[] commandsUntillEndOfFile = Arrays.copyOfRange(ReadCommandFile.fileData, lineIndex, ReadCommandFile.fileData.length);
                 int linesToRead = HelperFuncs.countLinesUntillClosingBrancket(commandsUntillEndOfFile);
                 String[] commandsOfWhileLoop = Arrays.copyOfRange(ReadCommandFile.fileData, lineIndex, lineIndex + linesToRead);
-                CommandMapper.loopsCommandsMap.get(firstCommandWord).doCommand(commandsOfWhileLoop,lineIndex+1);
+                CommandMapper.loopsCommandsMap.get(firstCommandWord).doCommand(commandsOfWhileLoop, lineIndex + 1);
                 lineIndex += linesToRead;
 
             }

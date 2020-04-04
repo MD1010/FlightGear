@@ -26,10 +26,14 @@ public class VarCommand implements ICommand {
             variable.path = variablePath;
         }
         else if (VariableMapper.isVariableExist(rValue)) {
+            variable.value = VariableMapper.getVaraibleByKey(rValue).value;
             variable.isLocal = true;
-            // todo: get the value from the server and add the vairalbe with the value to the map
         } else {
             throw new Exception("variable " + rValue + "is undefined");
+        }
+
+        if(variable.value == null) {
+            variable.value = "0.0";
         }
 
         VariableMapper.setVariable(variableName, variable);

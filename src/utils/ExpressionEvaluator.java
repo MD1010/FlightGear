@@ -31,7 +31,7 @@ public class ExpressionEvaluator {
                 if (variable.value != null) {
                     expressionAfterEqualSign[wordIndex] = variable.value;
                 } else {
-                    expressionAfterEqualSign[wordIndex] = String.valueOf(random.nextInt(MAX_VALUE - MIN_VALUE + 1) + MIN_VALUE);
+                    //expressionAfterEqualSign[wordIndex] = String.valueOf(random.nextInt(MAX_VALUE - MIN_VALUE + 1) + MIN_VALUE);
                 }
             }
 

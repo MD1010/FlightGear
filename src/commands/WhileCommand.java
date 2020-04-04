@@ -22,7 +22,6 @@ public class WhileCommand implements ILoopCommand {
         double secondConditionValue = HelperFuncs.getValueOrVariableValue(conditionRightOperand);
 
         while (ConditionMapper.condationsMap.get(conditionSign).isConditionHappening(firstConditionValue, secondConditionValue)) {
-            System.out.println("Sheni damog!!!!!!");
             for (String commandToExexute : commandsInsideLoop) {
                 HelperFuncs.executeCommand(commandToExexute, lineToReadFromIndex);
                 firstConditionValue = HelperFuncs.getValueOrVariableValue(conditionLeftOperand);
