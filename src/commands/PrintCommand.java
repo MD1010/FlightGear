@@ -19,6 +19,7 @@ public class PrintCommand implements ICommand {
 //                String[] expression = Arrays.copyOfRange(args, 1, args.length);
 //                double expressionValue = ExpressionEvaluator.getExpressionNumericValue(args[0]);
                 String expressionValue = VariableMapper.getVaraibleByKey(args[0]).value;
+                System.out.println(expressionValue);
             } else {
                 System.out.println("Variable " + args[0] + " is not defined");
             }
