@@ -32,23 +32,21 @@ public class DataServerReader {
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
 
-        Runnable r = new Runnable() {
-            public void run() {
-                int index = 0;
-                try {
-                    String line = reader.readLine();
-                    while (line != null) {
-                        String[] lineData = line.split(",");
-                        VariableAssign.updateExistingVariables(lineData);
-                        if(index++ % 10 == 0) {
-                            System.out.println(line);
-                        }
-                        line = reader.readLine();
+        Runnable r = () -> {
+            int index = 0;
+            try {
+                String line = reader.readLine();
+                while (line != null) {
+                    String[] lineData = line.split(",");
+                    VariableAssign.updateExistingVariables(lineData);
+                    if(index++ % 10 == 0) {
+                        System.out.println(line);
                     }
+                    line = reader.readLine();
                 }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
+            }
+            catch (IOException e) {
+                e.printStackTrace();
             }
         };
         new Thread(r).start();
