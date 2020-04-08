@@ -7,7 +7,6 @@ import readers.CommandReader;
 import java.util.Map;
 
 public class ReadCommandFile {
-
-    public static String[] fileData = CommandReader.lexer();
+    public static String[] fileData;
 }
 

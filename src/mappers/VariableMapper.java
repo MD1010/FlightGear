@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class VariableMapper {
-    public static List<XmlNode> xmlVariablesFile = FileReader.readXMLFile("generic_small.xml");
-
     public static Map<String, Variable> symbolMap = new HashMap<>();
 
     public static void setVariable(String variableName, Variable variable) {
