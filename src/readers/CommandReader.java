@@ -12,7 +12,7 @@ public class CommandReader {
         return commandString.split(" ");
     }
 
-    public static void parser() throws Exception {
+    public static void parser() {
         String[] fileData = ReadCommandFile.fileData;
         for (int lineIndex = 0; lineIndex < fileData.length; lineIndex++) {
            // String[] lineToExecute = CommandReader.trimCommand(fileData[lineIndex]);

@@ -36,7 +36,7 @@ public class ConnectCommand implements ICommand {
 
     // establish a connection
 
-    public static void sendCommandToSimulator(String command) throws IOException {
+    public static void sendCommandToSimulator(String command) {
         //command: "set /controls/..../.././. 100"
        out.println(command);
     }

@@ -9,17 +9,6 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class HelperFuncs {
-    public static void throwIfNumOfArgumentsIsInvalid(boolean predicate, String[] args, int expectedNumOfArgs) throws Exception {
-        if (predicate) {
-            throw new Exception("Syntax Error, Excpected" + expectedNumOfArgs + " got " + args.length);
-        }
-    }
-
-    public static void throwIfEqualSignDoesntExist(String argumnet) throws Exception {
-        if (!argumnet.equals(Consts.EQUAL_SIGN)) {
-            throw new Exception("Syntax Error, Excpected = after variable name ");
-        }
-    }
 
     public static int countLinesUntillClosingBrancket(String[] text) {
         int lineCounter = 0;
@@ -57,7 +46,7 @@ public class HelperFuncs {
         return null;
     }
 
-    public static int executeCommand(String lineToExecute, int lineIndex) throws Exception {
+    public static int executeCommand(String lineToExecute, int lineIndex) {
         // check if first word is a command name
         String[] splittedCommand = CommandReader.splitAndRemoveSpaces(lineToExecute);
         String firstCommandWord = splittedCommand[0];

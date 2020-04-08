@@ -9,18 +9,13 @@ import utils.HelperFuncs;
 
 public class VarCommand implements ICommand {
     @Override
-    public int doCommand(String[] args) throws Exception {
-        HelperFuncs.throwIfNumOfArgumentsIsInvalid(args.length < 3, args, 3);
-
+    public int doCommand(String[] args) {
         String variableName = args[0];
         String equalSign = args[1];
         String rValue = args[2];
         Variable variable = new Variable();
 
-        HelperFuncs.throwIfEqualSignDoesntExist(equalSign);
-
         if (rValue.equals(Consts.BIND_KEYWORD)) {
-            HelperFuncs.throwIfNumOfArgumentsIsInvalid(args.length != 4, args, 4);
             String variablePath = args[3].replaceAll("\"", "");
             variable.isLocal = false;
             variable.path = variablePath;
@@ -28,8 +23,6 @@ public class VarCommand implements ICommand {
         else if (VariableMapper.isVariableExist(rValue)) {
             variable.value = VariableMapper.getVaraibleByKey(rValue).value;
             variable.isLocal = true;
-        } else {
-            throw new Exception("variable " + rValue + "is undefined");
         }
 
         if(variable.value == null) {

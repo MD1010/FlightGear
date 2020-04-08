@@ -7,7 +7,7 @@ import utils.HelperFuncs;
 import java.util.Arrays;
 
 public class WhileCommand implements ILoopCommand {
-    public int doCommand(String[] args, int lineToReadFromIndex) throws Exception {
+    public int doCommand(String[] args, int lineToReadFromIndex) {
         String[] firstWhileLineSplittedBySpace = args[0].split(" ");
         String[] condition = Arrays.copyOfRange(firstWhileLineSplittedBySpace, 1, firstWhileLineSplittedBySpace.length - 1);
         String conditionLeftOperand = condition[0];

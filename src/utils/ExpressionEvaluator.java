@@ -14,15 +14,12 @@ import static utils.Consts.*;
 
 public class ExpressionEvaluator {
 
-    public static String[] switchVariablesToValues(String[] fullExpression) throws Exception {
+    public static String[] switchVariablesToValues(String[] fullExpression) {
         String[] expressionAfterEqualSign = Arrays.copyOfRange(fullExpression, 2, fullExpression.length);
         for (int wordIndex = 0; wordIndex < expressionAfterEqualSign.length; wordIndex++) {
             String word = expressionAfterEqualSign[wordIndex];
             if (VariableMapper.isVariableExist(word)) {
                 Variable variable = VariableMapper.getVaraibleByKey(word);
-                if (variable == null) {
-                    throw new Exception("Variable is not defined");
-                }
 
                 // todo: Like mok until connecting to the server
                 final int MIN_VALUE = 1;
