@@ -85,7 +85,7 @@ public class HelperFuncs {
             String newLine = "";
             for (int charIndex = 0; charIndex < lines[lineIndex].length(); charIndex++){
                 String currentChar = String.valueOf(lines[lineIndex].charAt(charIndex));
-                if(specialCharacters.contains(currentChar)) {
+                if(specialChars.contains(currentChar)) {
                     if(charIndex - 1 >= 0) {
                         char previousChar = lines[lineIndex].charAt(charIndex - 1);
                         if (previousChar != ' ') {
