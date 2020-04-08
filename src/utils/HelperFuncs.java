@@ -6,7 +6,6 @@ import models.Variable;
 import readers.CommandReader;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class HelperFuncs {
 
@@ -68,14 +67,48 @@ public class HelperFuncs {
             // }
 
             if (CommandMapper.loopsCommandsMap.containsKey(firstCommandWord)) {
-                String[] commandsUntillEndOfFile = Arrays.copyOfRange(ReadCommandFile.fileData, lineIndex, ReadCommandFile.fileData.length);
+                String[] commandsUntillEndOfFile = Arrays.copyOfRange(CommandReader.commands, lineIndex, CommandReader.commands.length);
                 int linesToRead = HelperFuncs.countLinesUntillClosingBrancket(commandsUntillEndOfFile);
-                String[] commandsOfWhileLoop = Arrays.copyOfRange(ReadCommandFile.fileData, lineIndex, lineIndex + linesToRead);
+                String[] commandsOfWhileLoop = Arrays.copyOfRange(CommandReader.commands, lineIndex, lineIndex + linesToRead);
                 CommandMapper.loopsCommandsMap.get(firstCommandWord).doCommand(commandsOfWhileLoop, lineIndex + 1);
                 lineIndex += linesToRead;
 
             }
         }
         return lineIndex;
+    }
+
+    public static String[] addSpaces(String[] lines) {
+        final String specialChars = "+-*/()=";
+        for(int lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+            System.out.println("before " + lines[lineIndex]);
+            String newLine = "";
+            for (int charIndex = 0; charIndex < lines[lineIndex].length(); charIndex++){
+                String currentChar = String.valueOf(lines[lineIndex].charAt(charIndex));
+                if(specialCharacters.contains(currentChar)) {
+                    if(charIndex - 1 >= 0) {
+                        char previousChar = lines[lineIndex].charAt(charIndex - 1);
+                        if (previousChar != ' ') {
+                           newLine += " ";
+                        }
+                    }
+                    newLine += currentChar;
+
+                    if(charIndex + 1 < lines[lineIndex].length()) {
+                        char nextChar = lines[lineIndex].charAt(charIndex + 1);
+                        if (nextChar != ' ') {
+                            newLine += " ";
+                        }
+                    }
+                } else {
+                    newLine += currentChar;
+                }
+            }
+
+            lines[lineIndex] = newLine;
+            System.out.println("after " + lines[lineIndex]);
+        }
+
+        return lines;
     }
 }
