@@ -14,6 +14,7 @@ public class CommandReader {
     public static void runCommands(String[] lines) {
         commands = HelperFuncs.addSpaces(lines);
         for (int lineIndex = 0; lineIndex < commands.length; lineIndex++) {
+            System.out.println("current row " + commands[lineIndex]);
             lineIndex = HelperFuncs.executeCommand(commands[lineIndex], lineIndex);
         }
     }

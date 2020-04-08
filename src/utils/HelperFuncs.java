@@ -81,7 +81,6 @@ public class HelperFuncs {
     public static String[] addSpaces(String[] lines) {
         final String specialChars = "+-*/()=";
         for(int lineIndex = 0; lineIndex < lines.length; lineIndex++) {
-            System.out.println("before " + lines[lineIndex]);
             String newLine = "";
             for (int charIndex = 0; charIndex < lines[lineIndex].length(); charIndex++){
                 String currentChar = String.valueOf(lines[lineIndex].charAt(charIndex));
@@ -106,7 +105,6 @@ public class HelperFuncs {
             }
 
             lines[lineIndex] = newLine;
-            System.out.println("after " + lines[lineIndex]);
         }
 
         return lines;
