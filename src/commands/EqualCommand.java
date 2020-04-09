@@ -29,7 +29,7 @@ public class EqualCommand implements ICommand {
         double variableValue = getExpressionNumericValue(rValuePostfix);
         Variable updatedVariable = VariableMapper.getVaraibleByKey(args[0]);
         updatedVariable.value = String.valueOf(variableValue);
-        ConnectCommand.sendCommandToSimulator("set " + updatedVariable.path + " " + updatedVariable.value);
+//        ConnectCommand.sendCommandToSimulator("set " + updatedVariable.path + " " + updatedVariable.value);
         VariableMapper.setVariable(args[0], updatedVariable);
         return 1;
         // args = [noder, = , h0, -, heading, /, 15]

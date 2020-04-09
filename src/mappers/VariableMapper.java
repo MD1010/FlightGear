@@ -23,6 +23,10 @@ public class VariableMapper {
         return symbolMap.get(variableName);
     }
 
+    public static void clearMap() {
+        symbolMap.clear();
+    }
+
     public static void printSymbolMap() {
         for (Map.Entry<String, Variable> entry : symbolMap.entrySet()) {
             String key = entry.getKey();
