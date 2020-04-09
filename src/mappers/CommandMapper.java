@@ -15,6 +15,7 @@ public class CommandMapper {
         put("var", new VarCommand());
         put("print", new PrintCommand());
         put("sleep", new SleepCommand());
+        put("return", new ReturnCommand());
         put(Consts.EQUAL_SIGN, new EqualCommand());
 
 

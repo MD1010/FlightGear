@@ -14,10 +14,10 @@ import static utils.Consts.*;
 
 public class ExpressionEvaluator {
 
-    public static String[] switchVariablesToValues(String[] fullExpression) {
-        String[] expressionAfterEqualSign = Arrays.copyOfRange(fullExpression, 2, fullExpression.length);
-        for (int wordIndex = 0; wordIndex < expressionAfterEqualSign.length; wordIndex++) {
-            String word = expressionAfterEqualSign[wordIndex];
+    public static String[] switchVariablesToValues(String[] mathExpression) {
+        String[] expression = mathExpression.clone();
+        for (int wordIndex = 0; wordIndex < mathExpression.length; wordIndex++) {
+            String word = mathExpression[wordIndex];
             if (VariableMapper.isVariableExist(word)) {
                 Variable variable = VariableMapper.getVaraibleByKey(word);
 
@@ -26,14 +26,14 @@ public class ExpressionEvaluator {
                 final int MAX_VALUE = 5;
                 Random random = new Random();
                 if (variable.value != null) {
-                    expressionAfterEqualSign[wordIndex] = variable.value;
+                    expression[wordIndex] = variable.value;
                 } else {
                     //expressionAfterEqualSign[wordIndex] = String.valueOf(random.nextInt(MAX_VALUE - MIN_VALUE + 1) + MIN_VALUE);
                 }
             }
 
         }
-        return expressionAfterEqualSign;
+        return expression;
     }
 
     public static double getExpressionNumericValue(String[] expression) {

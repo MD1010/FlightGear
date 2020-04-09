@@ -5,6 +5,7 @@ import mappers.VariableMapper;
 import models.Variable;
 import utils.Consts;
 import utils.ExpressionEvaluator;
+import utils.HelperFuncs;
 import utils.ShuntingYard;
 
 import java.util.Arrays;
@@ -30,34 +31,11 @@ public class VarCommand implements ICommand {
             return 1;
         }
 
-//        String[] rvalue = Arrays.copyOfRange(args, 2, args.length);
-        String[] expressionAfterEqualSign = ExpressionEvaluator.switchVariablesToValues(args);
-        String[] rValuePostfix = ShuntingYard.convertToPostfix(expressionAfterEqualSign);
-        double variableValue = getExpressionNumericValue(rValuePostfix);
+        String[] mathExpression = Arrays.copyOfRange(args, 2, args.length);
+        String variableValue = HelperFuncs.evaluateValue(mathExpression);
         variable.isLocal = true;
-        variable.value = String.valueOf(variableValue);
+        variable.value = variableValue;
         VariableMapper.setVariable(variableName, variable);
         return 1;
     }
 }
-
-//        String variableName = args[0];
-//        String equalSign = args[1];
-//        String rValue = args[2];
-
-
-//        if (rValue.equals(Consts.BIND_KEYWORD)) {
-//            String variablePath = args[3].replaceAll("\"", "");
-//            variable.isLocal = false;
-//            variable.path = variablePath;
-//        } else if (VariableMapper.isVariableExist(rValue)) {
-//            variable.value = VariableMapper.getVaraibleByKey(rValue).value;
-//            variable.isLocal = true;
-//        }
-//
-//        if (variable.value == null) {
-//            variable.value = "0.0";
-//        }
-//
-//        VariableMapper.setVariable(variableName, variable);
-

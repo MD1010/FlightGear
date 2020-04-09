@@ -7,6 +7,8 @@ import readers.CommandReader;
 
 import java.util.Arrays;
 
+import static utils.ExpressionEvaluator.getExpressionNumericValue;
+
 public class HelperFuncs {
 
     public static int countLinesUntillClosingBrancket(String[] text) {
@@ -109,4 +111,11 @@ public class HelperFuncs {
 
         return lines;
     }
+    public static String evaluateValue(String[] mathExpression){
+        String[] expressionAfterEqualSign = ExpressionEvaluator.switchVariablesToValues(mathExpression);
+        String[] rValuePostfix = ShuntingYard.convertToPostfix(expressionAfterEqualSign);
+        double variableValue = getExpressionNumericValue(rValuePostfix);
+        return String.valueOf(variableValue);
+    }
 }
+
