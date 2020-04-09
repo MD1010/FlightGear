@@ -1,14 +1,11 @@
 package commands;
 
 import interfaces.ICommand;
-import mappers.CommandMapper;
 import mappers.VariableMapper;
 import models.Variable;
+import utils.Consts;
 import utils.ExpressionEvaluator;
-import utils.HelperFuncs;
 import utils.ShuntingYard;
-
-import java.util.Arrays;
 
 import static utils.ExpressionEvaluator.getExpressionNumericValue;
 
@@ -20,10 +17,17 @@ public class EqualCommand implements ICommand {
         // number = h0 * 3 + noder
 
 
-
         // noder - n
         // 100 - num
         // - number - 10
+        if (args[2].equals(Consts.BIND_KEYWORD)) {
+            String variableName = args[0];
+            Variable newVaraible = VariableMapper.getVaraibleByKey(variableName);
+            newVaraible.isLocal = false;
+            newVaraible.path = args[3];
+            VariableMapper.setVariable(variableName, newVaraible);
+            return 1;
+        }
         String[] expressionAfterEqualSign = ExpressionEvaluator.switchVariablesToValues(args);
         String[] rValuePostfix = ShuntingYard.convertToPostfix(expressionAfterEqualSign);
         double variableValue = getExpressionNumericValue(rValuePostfix);

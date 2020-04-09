@@ -30,8 +30,8 @@ public class VarCommand implements ICommand {
             return 1;
         }
 
-        String[] rvalue = Arrays.copyOfRange(args, 2, args.length);
-        String[] expressionAfterEqualSign = ExpressionEvaluator.switchVariablesToValues(rvalue);
+//        String[] rvalue = Arrays.copyOfRange(args, 2, args.length);
+        String[] expressionAfterEqualSign = ExpressionEvaluator.switchVariablesToValues(args);
         String[] rValuePostfix = ShuntingYard.convertToPostfix(expressionAfterEqualSign);
         double variableValue = getExpressionNumericValue(rValuePostfix);
         variable.isLocal = true;
