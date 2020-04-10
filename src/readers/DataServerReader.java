@@ -32,15 +32,13 @@ public class DataServerReader {
         Runnable r = () -> {
             int index = 0;
             try {
-                //Thread.sleep(1000 / time);
                 String line = reader.readLine();
                 while (line != null) {
                     String[] lineData = line.split(",");
                     VariableAssign.updateExistingVariables(lineData);
-                    //if (index++ % 10 == 0) {
+                    if (index++ % 10 == 0) {
                         System.out.println(line);
-                    //}
-                    //Thread.sleep(1000 / time);
+                    }
                     line = reader.readLine();
                 }
             } catch (Exception e) {
