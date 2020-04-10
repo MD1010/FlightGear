@@ -40,5 +40,11 @@ public class ConnectCommand implements ICommand {
         //command: "set /controls/..../.././. 100"
        out.println(command);
     }
+    public static void closeConnection() throws IOException {
+        connectCommandInstance = null;
+        socket.close();
+        out.close();
+
+    }
 }
 

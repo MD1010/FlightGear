@@ -15,13 +15,9 @@ public class DataServerReader {
     private static InputStream input;
     private static BufferedReader reader;
     private static Socket socket;
+
     public DataServerReader() {
 
-//        try {
-//            this.openServerConnection();
-//        } catch (IOException e) {
-//            System.out.println("Failed to open server ! ");
-//        }
     }
 
     public static void openServerConnection(int port) throws IOException {

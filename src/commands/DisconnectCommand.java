@@ -10,6 +10,7 @@ public class DisconnectCommand implements ICommand {
     public int doCommand(String[] args) {
         try {
             DataServerReader.closeConnection();
+            ConnectCommand.closeConnection();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -34,10 +34,10 @@ public class HelperFuncs {
         }
     }
 
-    public static String getVariableKeyByPath(String XMLPath) {
+    public static String getVariableKeyByPath(String path) {
         for (String var : VariableMapper.symbolMap.keySet()) {
             if (!VariableMapper.symbolMap.get(var).isLocal) {
-                if (VariableMapper.symbolMap.get(var).path.equals(XMLPath)) {
+                if (VariableMapper.symbolMap.get(var).path.equals(path)) {
                     return var;
                 }
             }
