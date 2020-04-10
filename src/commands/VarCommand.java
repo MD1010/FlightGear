@@ -20,7 +20,7 @@ public class VarCommand implements ICommand {
         Variable variable = new Variable();
         if (args.length == 1) {
             variable.isLocal = true;
-            variable.value = "0.0";
+            variable.value = 0.0;
             VariableMapper.setVariable(variableName, variable);
             return 1;
         }
@@ -32,9 +32,9 @@ public class VarCommand implements ICommand {
         }
 
         String[] mathExpression = Arrays.copyOfRange(args, 2, args.length);
-        String variableValue = HelperFuncs.evaluateValue(mathExpression);
+        double result = HelperFuncs.evaluateValue(mathExpression);
         variable.isLocal = true;
-        variable.value = variableValue;
+        variable.value = result;
         VariableMapper.setVariable(variableName, variable);
         return 1;
     }

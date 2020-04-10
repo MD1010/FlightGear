@@ -25,11 +25,7 @@ public class ExpressionEvaluator {
                 final int MIN_VALUE = 1;
                 final int MAX_VALUE = 5;
                 Random random = new Random();
-                if (variable.value != null) {
-                    expression[wordIndex] = variable.value;
-                } else {
-                    //expressionAfterEqualSign[wordIndex] = String.valueOf(random.nextInt(MAX_VALUE - MIN_VALUE + 1) + MIN_VALUE);
-                }
+                expression[wordIndex] = String.valueOf(variable.value);
             }
 
         }

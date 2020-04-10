@@ -10,12 +10,13 @@ import java.util.Map;
 
 public class CommandMapper {
     public static Map<String, ICommand> commandsMap = new HashMap<String, ICommand>() {{
-        //put("openDataServer", new OpenDataServerCommand());
-        //put("connect", ConnectCommand.getInstance());
+        put("openDataServer", new OpenDataServerCommand());
+        put("connect", ConnectCommand.getInstance());
         put("var", new VarCommand());
         put("print", new PrintCommand());
         put("sleep", new SleepCommand());
         put("return", new ReturnCommand());
+        put("disconnect", new DisconnectCommand());
         put(Consts.EQUAL_SIGN, new EqualCommand());
 
 

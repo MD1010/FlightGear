@@ -28,7 +28,7 @@ public class HelperFuncs {
                 //Random random = new Random();
                 //return random.nextDouble();
             //}
-            return Double.parseDouble(variable.value);
+            return variable.value;
         } else {
             return Double.parseDouble(variableOrValue);
         }
@@ -111,11 +111,10 @@ public class HelperFuncs {
 
         return lines;
     }
-    public static String evaluateValue(String[] mathExpression){
+    public static double evaluateValue(String[] mathExpression){
         String[] expressionAfterEqualSign = ExpressionEvaluator.switchVariablesToValues(mathExpression);
         String[] rValuePostfix = ShuntingYard.convertToPostfix(expressionAfterEqualSign);
-        double variableValue = getExpressionNumericValue(rValuePostfix);
-        return String.valueOf(variableValue);
+        return getExpressionNumericValue(rValuePostfix);
     }
 }
 

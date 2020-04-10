@@ -1,5 +1,6 @@
 package readers;
 
+import com.sun.security.ntlm.Server;
 import utils.VariableAssign;
 
 import java.io.BufferedReader;
@@ -10,12 +11,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class DataServerReader {
-    private String port;
-    private String sampleTime;
+    private static ServerSocket serverSocket;
+    private static InputStream input;
+    private static BufferedReader reader;
+    private static Socket socket;
+    public DataServerReader() {
 
-    public DataServerReader(String port, String sampleTime) {
-        this.setPort(port);
-        this.setSampleTime(sampleTime);
 //        try {
 //            this.openServerConnection();
 //        } catch (IOException e) {
@@ -24,13 +25,12 @@ public class DataServerReader {
     }
 
     public static void openServerConnection(int port) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(port);
+        serverSocket = new ServerSocket(port);
         System.out.println("before accept");
-        Socket socket = serverSocket.accept();
+        socket = serverSocket.accept();
         System.out.println("conneceted..Now data supposed to be sent");
-        InputStream input = socket.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-
+        input = socket.getInputStream();
+        reader = new BufferedReader(new InputStreamReader(input));
 
         Runnable r = () -> {
             int index = 0;
@@ -39,35 +39,25 @@ public class DataServerReader {
                 while (line != null) {
                     String[] lineData = line.split(",");
                     VariableAssign.updateExistingVariables(lineData);
-                    if(index++ % 10 == 0) {
+                    if (index++ % 10 == 0) {
                         System.out.println(line);
                     }
                     line = reader.readLine();
                 }
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         };
         new Thread(r).start();
     }
 
-    private String getPort() {
-        return this.port;
+
+
+    public static void closeConnection() throws IOException {
+        serverSocket.close();
+        input.close();
+        socket.close();
+        reader.close();
     }
 
-
-    private void setPort(String port) {
-        this.port = port;
-    }
-
-
-    private String getSampleTime() {
-        return this.sampleTime;
-    }
-
-    ;
-    private void setSampleTime(String sampleTime) {
-        this.sampleTime = sampleTime;
-    }
 }

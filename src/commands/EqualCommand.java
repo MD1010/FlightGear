@@ -26,9 +26,9 @@ public class EqualCommand implements ICommand {
         }
 
         String[] mathExpression = Arrays.copyOfRange(args, 2, args.length);
-        String variableValue = HelperFuncs.evaluateValue(mathExpression);
+        double result = HelperFuncs.evaluateValue(mathExpression);
         Variable updatedVariable = VariableMapper.getVaraibleByKey(args[0]);
-        updatedVariable.value = String.valueOf(variableValue);
+        updatedVariable.value = result;
 //        ConnectCommand.sendCommandToSimulator("set " + updatedVariable.path + " " + updatedVariable.value);
         VariableMapper.setVariable(args[0], updatedVariable);
         return 1;
