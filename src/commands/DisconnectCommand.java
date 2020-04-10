@@ -11,6 +11,8 @@ public class DisconnectCommand implements ICommand {
         try {
             DataServerReader.closeConnection();
             ConnectCommand.closeConnection();
+            ConnectCommand.sendCommandToSimulator("bye");
+
         } catch (IOException e) {
             e.printStackTrace();
         }

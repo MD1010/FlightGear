@@ -16,12 +16,14 @@ public class DataServerReader {
     private static BufferedReader reader;
     private static Socket socket;
     public static int sleepedTime;
+    public static boolean isRunThread;
     public DataServerReader() {
 
     }
 
     public static void openServerConnection(int port, int time) throws IOException {
         sleepedTime = time;
+        isRunThread = true;
         serverSocket = new ServerSocket(port);
         System.out.println("before accept");
         socket = serverSocket.accept();
@@ -33,7 +35,7 @@ public class DataServerReader {
             int index = 0;
             try {
                 String line = reader.readLine();
-                while (line != null) {
+                while (line != null && isRunThread) {
                     String[] lineData = line.split(",");
                     VariableAssign.updateExistingVariables(lineData);
                     if (index++ % 10 == 0) {
@@ -48,13 +50,11 @@ public class DataServerReader {
         new Thread(r).start();
     }
 
-
-
     public static void closeConnection() throws IOException {
-        serverSocket.close();
-        input.close();
-        socket.close();
+        //input.close();
+        isRunThread = false;
         reader.close();
+        socket.close();
+        serverSocket.close();
     }
-
 }
