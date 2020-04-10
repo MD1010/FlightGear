@@ -5,7 +5,9 @@ import mappers.VariableMapper;
 import models.Variable;
 import readers.CommandReader;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static utils.ExpressionEvaluator.getExpressionNumericValue;
 
@@ -34,17 +36,18 @@ public class HelperFuncs {
         }
     }
 
-    public static String getVariableKeyByPath(String path) {
+    public static List<String> getVariableKeyByPath(String path) {
+        List<String> varialbleNames = new ArrayList<String>();
         for (String var : VariableMapper.symbolMap.keySet()) {
             if (!VariableMapper.symbolMap.get(var).isLocal) {
                 if (VariableMapper.symbolMap.get(var).path.equals(path)) {
-                    return var;
+                    varialbleNames.add(var);
                 }
             }
 
 
         }
-        return null;
+        return varialbleNames;
     }
 
     public static int executeCommand(String lineToExecute, int lineIndex) {

@@ -10,6 +10,8 @@ public class MainTrain {
 		Simulator sim=new Simulator(port); // sim_client on port+1, sim_server on port
 		
 		int rand=r.nextInt(1000);
+
+		System.out.println("randommmmmmmmmmmmmm " + rand);
 		
 		String[] test1={
 				"return "+rand+" * 5 - (8+2)"	
@@ -38,7 +40,7 @@ public class MainTrain {
 				"disconnect",
 				"return y"	
 		};
-		
+
 		if(MyInterpreter.interpret(test3)!=rand*2)
 			System.out.println("failed test3 (-20)");
 

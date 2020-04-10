@@ -8,7 +8,7 @@ public class OpenDataServerCommand implements ICommand {
     @Override
     public int doCommand(String[] args) {
         try {
-            DataServerReader.openServerConnection(Integer.parseInt(args[0]));
+            DataServerReader.openServerConnection(Integer.parseInt(args[0]),  Integer.parseInt(args[1]));
         }
         catch (IOException e) { }
         return 1;

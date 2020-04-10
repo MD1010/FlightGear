@@ -3,6 +3,7 @@ package commands;
 import interfaces.ICommand;
 import mappers.VariableMapper;
 import models.Variable;
+import readers.DataServerReader;
 import utils.Consts;
 import utils.ExpressionEvaluator;
 import utils.HelperFuncs;
@@ -15,7 +16,6 @@ import static utils.ExpressionEvaluator.getExpressionNumericValue;
 public class EqualCommand implements ICommand {
     @Override
     public int doCommand(String[] args) {
-
         if (args[2].equals(Consts.BIND_KEYWORD)) {
             String variableName = args[0];
             Variable newVaraible = VariableMapper.getVaraibleByKey(variableName);
@@ -31,6 +31,7 @@ public class EqualCommand implements ICommand {
         updatedVariable.value = result;
         if(updatedVariable.path != null) {
             ConnectCommand.sendCommandToSimulator("set " + updatedVariable.path + " " + updatedVariable.value);
+            try {Thread.sleep(1000 / DataServerReader.sleepedTime);} catch (InterruptedException e1) {}
         }
         VariableMapper.setVariable(args[0], updatedVariable);
         return 1;
